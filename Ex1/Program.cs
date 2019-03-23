@@ -102,6 +102,13 @@ namespace Excercise_1
             RunMissions(missionList, 2);
 
             PrintAvailableFunctions(funcList);
+
+            int num1, num2;
+            Console.Write("Enter first number: ");
+            num1 = int.Parse(Console.ReadLine());
         }
     }
 }
+
+
+

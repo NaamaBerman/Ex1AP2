@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,35 @@ namespace Excercise_1
 {
     public class ComposedMission : IMission
     {
-        public string Name => throw new NotImplementedException();
+        private List<Func<Double, Double>> missionList = new List<Func<Double, Double>>();
 
-        public string Type => throw new NotImplementedException();
+        public ComposedMission(String name)
+        {
+            this.Name = name;
+            this.Type = "Composed";
+        }
+    
+        public string Name { get; }
+
+        public string Type { get; }
 
         public event EventHandler<double> OnCalculate;
 
         public double Calculate(double value)
         {
-            throw new NotImplementedException();
+            
+            foreach (var m in missionList)
+            {
+                value = m(value);
+            }
+            OnCalculate?.Invoke(this, value);
+            return value;
         }
-    }
+        public ComposedMission Add(Func<Double, Double> mission)
+        {
+            missionList.Add(mission);
+            return this;
+        }
+
+    }///////
 }

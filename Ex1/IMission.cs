@@ -16,3 +16,5 @@ namespace Excercise_1
         double Calculate(double value);
     }
 }
+
+
